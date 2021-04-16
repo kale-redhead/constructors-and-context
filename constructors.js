@@ -86,8 +86,9 @@ function Employee(name, email, hireDate) {
     this.rating = rating;
   }
   
-  Movie.prototype.changingRating = function(num){
-    return this.rating += num;
+  Movie.prototype.changeRating = function(num){
+    let newRating = this.rating * num % 2;
+    return this.rating = newRating;
   }
   
   
@@ -102,10 +103,10 @@ function Employee(name, email, hireDate) {
     this.age = age;
     this.email = email;
     this.savedPosts = savedPosts;
+  }
 
-    this.addSavedPost = function(id, title, rating){
-
-    }
+  User.prototype.addSavedPost = function(id, title, rating){
+    this.savedPosts.push = ({id, title, rating});
   }
   
   ////////// PROBLEM 6 //////////
@@ -114,7 +115,8 @@ function Employee(name, email, hireDate) {
   // Write a prototype method for the User constructor function named removeSavedPost that will take in one number parameter representing the post id. Use this id to find and remove the matching object in the savedPosts array.
   
   User.prototype.removeSavedPost = function(id){
-
+    const index = this.savedPosts.findIndex(post => post === id);
+    return this.savedPosts.splice(index, 1);
   }
   
   ////////// PROBLEM 7 //////////
@@ -123,5 +125,5 @@ function Employee(name, email, hireDate) {
   // Write a prototype method for the User constructor function named changePostRating that will take in two number parameters. The first will be an id (a number) and the second will be the new rating (a number). Use the id to find the matching object in the savedPosts array. Once you find the matching object, update it's rating score with the new rating parameter.
   
   User.prototype.changePostRating = function(id, newRating){
-
+    this.savedPosts.map(e => e.id === id ? e.rating = newRating : null)
   }
